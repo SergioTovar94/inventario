@@ -3,7 +3,8 @@ import { authFetch } from "./authFetch";
 const ENDPOINT = "/api/tipos-producto/";
 
 export async function getTiposProducto() {
-  return authFetch(ENDPOINT);
+  const res = await authFetch("/api/tipos-producto/");
+  return res.json();
 }
 
 export async function createTipoProducto(data) {

@@ -66,7 +66,7 @@ export default function Marcas() {
         />
         <button
           type="submit"
-          className="bg-blue-500 text-white px-3 py-1 rounded"
+          className="bg-[#442f7f] hover:bg-[#61438F] text-white px-3 py-1 rounded"
         >
           {editingId ? "Guardar" : "Agregar"}
         </button>
@@ -103,13 +103,13 @@ export default function Marcas() {
               <span>{marca.descripcion}</span>
               <div>
                 <button
-                  className="bg-green-500 text-white px-2 py-1 rounded mr-2"
+                  className="bg-[#55b5b1] hover:bg-[#61438F]  text-white px-2 py-1 rounded mr-2"
                   onClick={() => handleEdit(marca)}
                 >
                   Editar
                 </button>
                 <button
-                  className="bg-red-500 text-white px-2 py-1 rounded"
+                  className="bg-red-500 text-white px-2 py-1 rounded hover:bg-[#61438F]"
                   onClick={() => handleDelete(marca.id)}
                 >
                   Eliminar

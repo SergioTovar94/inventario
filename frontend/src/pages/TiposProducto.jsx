@@ -62,7 +62,7 @@ export default function TiposProducto() {
             placeholder="Tipo de producto"
             className="border px-2 py-1 flex-1"
           />
-          <button type="submit" className="bg-blue-500 text-white px-3 py-1 rounded">
+          <button type="submit" className="bg-[#442f7f] hover:bg-[#61438F] text-white px-3 py-1 rounded">
             {editingId ? "Guardar" : "Agregar"}
           </button>
           {editingId && (
@@ -95,13 +95,13 @@ export default function TiposProducto() {
                 <span className="mb-2 md:mb-0">{tipo.tipo_producto}</span>
                 <div className="flex justify-center gap-2">
                   <button
-                    className="bg-green-500 text-white px-2 py-1 rounded"
+                    className="bg-[#55b5b1] hover:bg-[#61438F]  text-white px-2 py-1 rounded"
                     onClick={() => handleEdit(tipo)}
                   >
                     Editar
                   </button>
                   <button
-                    className="bg-red-500 text-white px-2 py-1 rounded"
+                    className="bg-red-500 hover:bg-[#61438F] text-white px-2 py-1 rounded"
                     onClick={() => handleDelete(tipo.id)}
                   >
                     Eliminar

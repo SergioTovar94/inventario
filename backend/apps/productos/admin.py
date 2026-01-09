@@ -3,6 +3,6 @@ from .models import Producto
 
 @admin.register(Producto)
 class ProductoAdmin(admin.ModelAdmin):
-    list_display = ('id','tipo','marca','precio','estado','fecha_compra')
-    search_fields = ('tipo__tipo_producto','marca__nombre')
-    list_filter = ('tipo','marca','estado')
+    list_display = ['codigo', 'serial', 'tipo', 'marca', 'estado', 'uso', 'propiedad', 'fecha_compra']
+    list_filter = ['estado', 'uso', 'propiedad', 'tipo', 'marca']
+    search_fields = ['codigo', 'serial']

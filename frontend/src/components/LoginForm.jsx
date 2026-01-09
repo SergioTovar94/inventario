@@ -20,7 +20,7 @@ export default function LoginForm({ onLogin }) {
     <form onSubmit={handleSubmit} className="flex flex-col gap-4 p-4 max-w-sm mx-auto">
       <input className="border p-2" placeholder="Usuario" value={username} onChange={e => setUsername(e.target.value)} />
       <input className="border p-2" type="password" placeholder="Contraseña" value={password} onChange={e => setPassword(e.target.value)} />
-      <button className="bg-blue-500 text-white p-2" type="submit">Ingresar</button>
+      <button className="bg-[#442f7f] hover:bg-[#61438F] text-white p-2" type="submit">Ingresar</button>
     </form>
   );
 }

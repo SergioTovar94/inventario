@@ -1,16 +1,21 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Dashboard from "../pages/AdminDashboard";
 import Funcionarios from "../pages/Funcionarios";
 import Areas from "../pages/Areas";
 import Marcas from "../pages/Marcas";
-import MainLayout from "../layouts/MainLayout";
-import PrivateRoute from "../components/PrivateRoute";
 import Productos from "../pages/Productos";
 import TiposProducto from "../pages/TiposProducto";
+import ReporteValor from "../pages/reportes/ReporteValor";
+
+import MainLayout from "../layouts/MainLayout";
+import PrivateRoute from "../components/PrivateRoute";
 
 function AppRouter() {
+  const isAuth = !!localStorage.getItem("access_token");
+
   return (
     <BrowserRouter>
       <Routes>
@@ -22,7 +27,7 @@ function AppRouter() {
         <Route
           path="/"
           element={
-            localStorage.getItem("access_token")
+            isAuth
               ? <Navigate to="/dashboard" replace />
               : <Navigate to="/login" replace />
           }
@@ -42,6 +47,9 @@ function AppRouter() {
           <Route path="/marcas" element={<Marcas />} />
           <Route path="/productos" element={<Productos />} />
           <Route path="/tipos-producto" element={<TiposProducto />} />
+
+          {/* Reportes */}
+          <Route path="/reportes/valor" element={<ReporteValor />} />
         </Route>
 
         {/* Fallback */}

@@ -17,7 +17,7 @@ export default function RegisterForm() {
       <input className="border p-2" placeholder="Usuario" value={username} onChange={e => setUsername(e.target.value)} />
       <input className="border p-2" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} />
       <input className="border p-2" type="password" placeholder="Contraseña" value={password} onChange={e => setPassword(e.target.value)} />
-      <button className="bg-green-500 text-white p-2" type="submit">Registrar</button>
+      <button className="bg-[#55b5b1] text-white p-2" type="submit">Registrar</button>
     </form>
   );
 }

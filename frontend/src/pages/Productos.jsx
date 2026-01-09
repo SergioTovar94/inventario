@@ -10,6 +10,21 @@ const ESTADO_LABELS = {
   DANADO: "Dañado",
 };
 
+const USO_LABELS = {
+  DISPONIBLE: "Disponible",
+  ASIGNADO: "Asignado",
+  EN_REPARACION: "En reparación",
+  DADO_DE_BAJA: "Dado de baja",
+  PRESTADO: "Prestado",
+};
+
+const PROPIEDAD_LABELS = {
+  PROPIO: "Propio",
+  PRESTADO: "Prestado",
+  ALQUILADO: "Alquilado",
+};
+
+
 export default function Productos() {
   const DEFAULT_DATE = "2023-07-04";
   const [ordering, setOrdering] = useState("-id");
@@ -20,6 +35,9 @@ export default function Productos() {
   const [formMarca, setFormMarca] = useState(null);
   const [formPrecio, setFormPrecio] = useState("");
   const [formEstado, setFormEstado] = useState("BUENO");
+  const [formUso, setFormUso] = useState("DISPONIBLE");
+  const [formPropiedad, setFormPropiedad] = useState("PROPIO");
+  const [formDetalles, setFormDetalles] = useState("");
   const [formFechaCompra, setFormFechaCompra] = useState(DEFAULT_DATE);
 
   const [tipos, setTipos] = useState([]);
@@ -75,6 +93,9 @@ export default function Productos() {
     setFormTipo(producto.tipo_id_value);
     setFormMarca(producto.marca_id_value);
     setFormPrecio(producto.precio);
+    setFormUso(producto.uso || "DISPONIBLE");
+    setFormPropiedad(producto.propiedad || "PROPIO");
+    setFormDetalles(producto.detalles || "");
 
     // 🔥 FIX CRÍTICO
     setFormEstado(
@@ -99,6 +120,9 @@ export default function Productos() {
       marca_id: formMarca,
       precio: formPrecio,
       estado: formEstado,
+      uso: formUso,
+      propiedad: formPropiedad,
+      detalles: formDetalles,
       fecha_compra: formFechaCompra,
     };
 
@@ -115,6 +139,9 @@ export default function Productos() {
     if (marcas.length > 0) setFormMarca(marcas[0].id);
     setFormPrecio("");
     setFormEstado("BUENO");
+    setFormUso("DISPONIBLE");
+    setFormPropiedad("PROPIO");
+    setFormDetalles("");
     setFormFechaCompra(DEFAULT_DATE);
     setEditingId(null);
     loadProductos();
@@ -215,10 +242,38 @@ export default function Productos() {
           ))}
         </select>
 
+        <select
+          value={formUso}
+          onChange={(e) => setFormUso(e.target.value)}
+          className="border px-2 py-1 w-full md:w-auto"
+        >
+          {Object.entries(USO_LABELS).map(([value, label]) => (
+            <option key={value} value={value}>{label}</option>
+          ))}
+        </select>
+
+        <select
+          value={formPropiedad}
+          onChange={(e) => setFormPropiedad(e.target.value)}
+          className="border px-2 py-1 w-full md:w-auto"
+        >
+          {Object.entries(PROPIEDAD_LABELS).map(([value, label]) => (
+            <option key={value} value={value}>{label}</option>
+          ))}
+        </select>
+
+        <textarea
+          value={formDetalles}
+          onChange={(e) => setFormDetalles(e.target.value)}
+          placeholder="Observaciones (ej: cargador dañado, sin cable, etc.)"
+          className="border px-2 py-1 w-full"
+          rows={2}
+        />
+
 
         <button
           type="submit"
-          className="bg-blue-500 text-white px-3 py-1 rounded"
+          className="bg-[#442f7f] hover:bg-[#61438F] text-white px-3 py-1 rounded"
         >
           {editingId ? "Guardar" : "Agregar"}
         </button>
@@ -247,7 +302,7 @@ export default function Productos() {
         <p>Cargando...</p>
       ) : (
         <ul>
-          <li className="hidden md:grid grid-cols-8 items-center text-center font-semibold bg-gray-100 border p-2 rounded">
+          <li className="hidden md:grid grid-cols-11 items-center text-center font-semibold bg-gray-100 border p-2 rounded">
             <span>Código</span>
 
             <span
@@ -278,6 +333,14 @@ export default function Productos() {
               onClick={() => handleSort("fecha_compra")}
               className="cursor-pointer hover:underline"
             >Fecha compra</span>
+            <span
+              onClick={() => handleSort("uso")}
+              className="cursor-pointer hover:underline"
+            >Uso</span>
+            <span
+              onClick={() => handleSort("propiedad")}
+              className="cursor-pointer hover:underline"
+            >Propiedad</span>
             <span>Acciones</span>
           </li>
 
@@ -288,7 +351,7 @@ export default function Productos() {
     border rounded p-3 mb-3
     grid gap-2
     sm:grid-cols-2
-    md:grid-cols-8
+    md:grid-cols-11
     md:items-center md:text-center
   "
             >
@@ -326,11 +389,27 @@ export default function Productos() {
                 <strong className="md:hidden">Compra: </strong>
                 {p.fecha_compra}
               </span>
+              <span>
+                <strong className="md:hidden">Uso: </strong>
+                {USO_LABELS[p.uso]}
+              </span>
+
+              <span>
+                <strong className="md:hidden">Propiedad: </strong>
+                {PROPIEDAD_LABELS[p.propiedad]}
+              </span>
+
+              {p.detalles && (
+                <span className="col-span-full text-sm text-gray-600">
+                  📝 {p.detalles}
+                </span>
+              )}
+
 
               <div>
-                <button className="bg-green-500 text-white px-2 py-1 rounded mr-2"
+                <button className="bg-[#55b5b1] hover:bg-[#61438F] text-white px-2 py-1 rounded mr-2"
                   onClick={() => handleEdit(p)}>Editar</button>
-                <button className="bg-red-500 text-white px-2 py-1 rounded"
+                <button className="bg-red-500 hover:bg-[#61438F] text-white px-2 py-1 rounded"
                   onClick={() => handleDelete(p.id)}>Eliminar</button>
               </div>
             </li>

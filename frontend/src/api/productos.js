@@ -2,8 +2,8 @@ import { authFetch } from "../api/authFetch";
 
 export const getProductos = async (ordering = "-id") => {
   try {
-    const data = await authFetch(`/api/productos/?ordering=${ordering}`);
-    return data;
+    const res = await authFetch(`/api/productos/?ordering=${ordering}`);
+    return await res.json();
   } catch (error) {
     console.error(error);
     return [];
@@ -31,8 +31,11 @@ export const createProducto = async ({
   estado,
   fecha_compra,
 }) => {
-  return authFetch("/api/productos/", {
+  const res = await authFetch("/api/productos/", {
     method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
     body: JSON.stringify({
       codigo: codigo.toUpperCase(),
       serial: serial.toUpperCase(),
@@ -43,6 +46,8 @@ export const createProducto = async ({
       fecha_compra,
     }),
   });
+
+  return await res.json(); // opcional pero correcto
 };
 
 // Actualizar

@@ -15,7 +15,7 @@ function MainLayout() {
     <div className="min-h-screen flex">
       {/* BOTÓN HAMBURGER - SOLO EN MÓVIL */}
       <button
-        className="md:hidden absolute top-4 left-4 z-20 bg-blue-700 text-white p-2 rounded"
+        className="md:hidden absolute top-4 left-4 z-20 bg-[#442f7f] hover:bg-[#61438F] text-white p-2 rounded"
         onClick={() => setMenuOpen(!menuOpen)}
       >
         ☰
@@ -24,7 +24,7 @@ function MainLayout() {
       {/* MENÚ */}
       <aside
         className={`
-          bg-blue-700 text-white p-4 w-64
+          bg-[#442f7f] text-white p-4 w-64
           fixed md:static h-full md:h-auto top-0 left-0
           transform transition-transform duration-300 ease-in-out
           ${menuOpen ? "translate-x-0" : "-translate-x-full"} md:translate-x-0
@@ -34,16 +34,18 @@ function MainLayout() {
         <h2 className="text-xl font-bold mb-6 pt-[1cm]">Inventario</h2>
 
         <ul className="space-y-3">
-          <li onClick={() => {navigate("/"); setMenuOpen(false)}} className="cursor-pointer">Dashboard</li>
-          <li onClick={() => {navigate("/funcionarios"); setMenuOpen(false)}} className="cursor-pointer">Funcionarios</li>
-          <li onClick={() => {navigate("/areas"); setMenuOpen(false)}} className="cursor-pointer">Áreas</li>
-          <li onClick={() => {navigate("/marcas"); setMenuOpen(false)}} className="cursor-pointer">Marcas</li>
-          <li onClick={() => {navigate("/productos"); setMenuOpen(false)}} className="cursor-pointer">Productos</li>
-          <li onClick={() => {navigate("/tipos-producto"); setMenuOpen(false)}} className="cursor-pointer">Tipo de Producto</li>
+          <li onClick={() => { navigate("/"); setMenuOpen(false) }} className="cursor-pointer hover:bg-[#61438F] ">Dashboard</li>
+          <li onClick={() => { navigate("/funcionarios"); setMenuOpen(false) }} className="cursor-pointer hover:bg-[#61438F]">Funcionarios</li>
+          <li onClick={() => { navigate("/areas"); setMenuOpen(false) }} className="cursor-pointer hover:bg-[#61438F]">Áreas</li>
+          <li onClick={() => { navigate("/marcas"); setMenuOpen(false) }} className="cursor-pointer hover:bg-[#61438F]">Marcas</li>
+          <li onClick={() => { navigate("/productos"); setMenuOpen(false) }} className="cursor-pointer hover:bg-[#61438F]">Productos</li>
+          <li onClick={() => { navigate("/tipos-producto"); setMenuOpen(false) }} className="cursor-pointer hover:bg-[#61438F]">Tipo de Producto</li>
+          <li onClick={() => { navigate("/reportes/valor"); setMenuOpen(false) }} className="cursor-pointer hover:bg-[#61438F]">Reporte de valor</li>
+
         </ul>
 
         <button
-          className="mt-8 bg-red-500 px-3 py-1 rounded w-full"
+          className="mt-8 bg-red-500 hover:bg-[#ed7330] px-3 py-1 rounded w-full hover:bg-[#f9b733]" 
           onClick={logout}
         >
           Cerrar sesión

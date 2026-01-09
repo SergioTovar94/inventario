@@ -43,7 +43,7 @@ function Login() {
       onSubmit={handleLogin}
       className="min-h-screen flex flex-col items-center justify-center bg-gray-100 gap-4"
     >
-      <h1 className="text-3xl font-bold text-blue-600">Login</h1>
+      <h1 className="text-3xl font-bold text-[#442f7f]">Login</h1>
 
       <input
         name="email"
@@ -66,7 +66,7 @@ function Login() {
 
       <button
         type="submit"
-        className="bg-blue-600 text-white px-4 py-2 rounded w-64"
+        className="bg-[#442f7f] hover:bg-[#61438F] text-white px-4 py-2 rounded w-64"
       >
         Login
       </button>

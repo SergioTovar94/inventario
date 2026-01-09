@@ -6,20 +6,29 @@ function AdminDashboard() {
 
   useEffect(() => {
     authFetch("/api/users/all/")
-      .then(data => setUsers(data))
+      .then(res => res.json())
+      .then(data => {
+        setUsers(Array.isArray(data) ? data : []);
+      })
       .catch(err => {
         console.error("Error cargando usuarios:", err);
+        setUsers([]);
       });
   }, []);
 
   return (
     <div>
       <h1>Admin Dashboard</h1>
-      <ul>
-        {users.map(u => (
-          <li key={u.id}>{u.email}</li>
-        ))}
-      </ul>
+
+      {users.length === 0 ? (
+        <p>No hay usuarios</p>
+      ) : (
+        <ul>
+          {users.map(u => (
+            <li key={u.id}>{u.email}</li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }

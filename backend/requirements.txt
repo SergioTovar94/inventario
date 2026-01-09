@@ -4,3 +4,5 @@ djangorestframework-simplejwt
 django-filter
 psycopg2-binary
 django-cors-headers
+openpyxl>=3.1
+reportlab>=4.0

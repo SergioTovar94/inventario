@@ -28,7 +28,7 @@ function Register() {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 gap-4">
-      <h1 className="text-3xl font-bold text-green-600">Registro</h1>
+      <h1 className="text-3xl font-bold text-[#55b5b1]">Registro</h1>
 
       <input
         className="border p-2 rounded w-64"
@@ -46,14 +46,14 @@ function Register() {
       />
 
       <button
-        className="bg-green-600 text-white px-4 py-2 rounded w-64"
+        className="bg-[#55b5b1] text-white px-4 py-2 rounded w-64"
         onClick={handleRegister}
       >
         Registrarse
       </button>
 
       <p
-        className="text-green-500 cursor-pointer"
+        className="text-[#55b5b1] cursor-pointer"
         onClick={() => navigate("/")}
       >
         ¿Ya tienes cuenta? Inicia sesión

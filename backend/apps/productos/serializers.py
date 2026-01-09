@@ -15,12 +15,15 @@ class ProductoSerializer(serializers.ModelSerializer):
         write_only=True
     )
 
-    # 👇 AÑADE ESTO
     tipo_id_value = serializers.IntegerField(source="tipo.id", read_only=True)
     marca_id_value = serializers.IntegerField(source="marca.id", read_only=True)
 
     tipo = serializers.StringRelatedField(read_only=True)
     marca = serializers.StringRelatedField(read_only=True)
+
+    # Campos legibles nuevos
+    uso_value = serializers.CharField(source="get_uso_display", read_only=True)
+    propiedad_value = serializers.CharField(source="get_propiedad_display", read_only=True)
 
     class Meta:
         model = Producto

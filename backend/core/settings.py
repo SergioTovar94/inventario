@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'apps.productos',
     'apps.tipos_producto',
     'apps.producto_asignacion',
+    "apps.reportes",
     ]
 
 AUTH_USER_MODEL = "users.User"

@@ -2,8 +2,8 @@ import { authFetch } from "../api/authFetch";
 
 export const getAreas = async () => {
   try {
-    const data = await authFetch("/api/areas/"); 
-    return data;
+    const res = await authFetch("/api/areas/");
+    return await res.json();
   } catch (error) {
     console.error(error);
     return [];
@@ -23,10 +23,15 @@ export const deleteArea = async (id) => {
 };
 // Crear
 export const createArea = async ({ nombre, descripcion }) => {
-  return authFetch("/api/areas/", {
+  const res = await authFetch("/api/areas/", {
     method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
     body: JSON.stringify({ nombre, descripcion }),
   });
+
+  return await res.json(); // opcional
 };
 
 // Actualizar

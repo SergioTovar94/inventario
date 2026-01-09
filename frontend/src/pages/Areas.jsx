@@ -56,7 +56,7 @@ export default function Areas() {
 
         <button
           type="submit"
-          className="bg-blue-500 text-white px-3 py-1 rounded"
+          className="bg-[#442f7f] hover:bg-[#61438F] text-white px-3 py-1 rounded"
         >
           {editingId ? "Guardar" : "Agregar"}
         </button>
@@ -86,13 +86,13 @@ export default function Areas() {
               <span>{area.nombre}</span>
               <div>
                 <button
-                  className="bg-green-500 text-white px-2 py-1 rounded mr-2"
+                  className="bg-[#55b5b1]  text-white px-2 py-1 rounded mr-2 hover:bg-[#61438F]"
                   onClick={() => handleEdit(area)}
                 >
                   Editar
                 </button>
                 <button
-                  className="bg-red-500 text-white px-2 py-1 rounded"
+                  className="bg-red-500 text-white px-2 py-1 rounded hover:bg-[#61438F]"
                   onClick={() => handleDelete(area.id)}
                 >
                   Eliminar
