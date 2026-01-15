@@ -22,7 +22,17 @@ arquitectura desacoplada y desplegable en entornos locales (on-premise).
 - Docker Compose
 
 ## Instalación (entorno local)
-Clonar el repositorio y ejecutar:
+
+**Para iniciar el repo:** 
+```bash
+git clone https://github.com/SergioTovar94/inventario.git
+```
+
+### Nos ubicamos en la carpeta clonada
+
+```bash
+cd inventario
+```
 
 ```bash
 docker-compose up --build
