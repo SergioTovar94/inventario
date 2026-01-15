@@ -4,6 +4,7 @@ from apps.marcas.models import Marca
 from apps.tipos_producto.models import TipoProducto
 
 class ProductoSerializer(serializers.ModelSerializer):
+    asignacion_activa = serializers.SerializerMethodField()
     tipo_id = serializers.PrimaryKeyRelatedField(
         queryset=TipoProducto.objects.all(),
         source="tipo",
@@ -28,4 +29,19 @@ class ProductoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Producto
         fields = "__all__"
+        
+    def get_asignacion_activa(self, obj):
+        asignacion = obj.asignaciones.filter(
+            activa=True
+        ).select_related("funcionario").first()
+
+        if not asignacion:
+            return None
+
+        return {
+            "id": asignacion.id,
+            "funcionario_id": asignacion.funcionario.id,
+            "funcionario_nombre": asignacion.funcionario.nombre,
+            "fecha_asignacion": asignacion.fecha_asignacion,
+        }
 

@@ -5,10 +5,19 @@ from rest_framework.filters import SearchFilter, OrderingFilter
 from django_filters.rest_framework import DjangoFilterBackend
 
 class ProductoViewSet(viewsets.ModelViewSet):
-    queryset = Producto.objects.select_related('marca').all().order_by('-id')
+    queryset = (
+        Producto.objects
+        .select_related('marca', 'tipo')        # FK directas
+        .prefetch_related('asignaciones__funcionario')  # 👈 CLAVE
+        .order_by('-id')
+    )
     serializer_class = ProductoSerializer
     permission_classes = [permissions.IsAuthenticated]
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
-    filterset_fields = ['tipo', 'marca__id', 'estado']
+    filterset_fields = ['tipo', 'marca', 'estado', 'uso', 'propiedad']
     search_fields = ['serial', 'tipo']
-    ordering_fields = ['id', 'serial', 'precio', 'estado', 'fecha_compra']
+    ordering_fields = [
+        'id', 'codigo', 'serial', 'precio',
+        'estado', 'uso', 'propiedad', 'fecha_compra'
+    ]
+

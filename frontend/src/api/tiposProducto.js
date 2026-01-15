@@ -10,13 +10,15 @@ export async function getTiposProducto() {
 export async function createTipoProducto(data) {
   return authFetch(ENDPOINT, {
     method: "POST",
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
   });
 }
 
 export async function updateTipoProducto(id, data) {
   return authFetch(`${ENDPOINT}${id}/`, {
-    method: "PATCH", // PATCH es lo ideal
+    method: "PATCH",
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
   });
 }

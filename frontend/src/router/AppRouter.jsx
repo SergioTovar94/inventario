@@ -9,6 +9,7 @@ import Marcas from "../pages/Marcas";
 import Productos from "../pages/Productos";
 import TiposProducto from "../pages/TiposProducto";
 import ReporteValor from "../pages/reportes/ReporteValor";
+import ProductosAsignados from "../pages/reportes/ProductosAsignados";
 
 import MainLayout from "../layouts/MainLayout";
 import PrivateRoute from "../components/PrivateRoute";
@@ -50,6 +51,7 @@ function AppRouter() {
 
           {/* Reportes */}
           <Route path="/reportes/valor" element={<ReporteValor />} />
+          <Route path="/reportes/productos-asignados" element={<ProductosAsignados  />} />
         </Route>
 
         {/* Fallback */}

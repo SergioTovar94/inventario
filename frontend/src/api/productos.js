@@ -1,8 +1,22 @@
 import { authFetch } from "../api/authFetch";
 
-export const getProductos = async (ordering = "-id") => {
+export const getProductos = async ({
+  ordering = "-id",
+  tipoId = "",
+  marcaId = "",
+  uso = "",
+  propiedad = "",
+} = {}) => {
   try {
-    const res = await authFetch(`/api/productos/?ordering=${ordering}`);
+    const params = new URLSearchParams();
+
+    if (ordering) params.append("ordering", ordering);
+    if (tipoId) params.append("tipo", tipoId);
+    if (marcaId) params.append("marca", marcaId);
+    if (uso) params.append("uso", uso);
+    if (propiedad) params.append("propiedad", propiedad);
+
+    const res = await authFetch(`/api/productos/?${params.toString()}`);
     return await res.json();
   } catch (error) {
     console.error(error);
@@ -47,8 +61,13 @@ export const createProducto = async ({
     }),
   });
 
-  return await res.json(); // opcional pero correcto
+  if (!res.ok) {
+    const errorData = await res.json();
+    throw errorData; 
+  }
+  return await res.json();
 };
+
 
 // Actualizar
 export const updateProducto = async (id, data) => {

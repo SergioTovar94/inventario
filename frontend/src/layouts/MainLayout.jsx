@@ -41,7 +41,7 @@ function MainLayout() {
           <li onClick={() => { navigate("/productos"); setMenuOpen(false) }} className="cursor-pointer hover:bg-[#61438F]">Productos</li>
           <li onClick={() => { navigate("/tipos-producto"); setMenuOpen(false) }} className="cursor-pointer hover:bg-[#61438F]">Tipo de Producto</li>
           <li onClick={() => { navigate("/reportes/valor"); setMenuOpen(false) }} className="cursor-pointer hover:bg-[#61438F]">Reporte de valor</li>
-
+          <li onClick={() => { navigate("/reportes/productos-asignados"); setMenuOpen(false) }} className="cursor-pointer hover:bg-[#61438F]">Reporte asignaciones</li>
         </ul>
 
         <button

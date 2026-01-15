@@ -1,8 +1,8 @@
 import { authFetch } from "../api/authFetch";
 
-export const getAreas = async () => {
+export const getFuncionarios = async () => {
   try {
-    const res = await authFetch("/api/areas/");
+    const res = await authFetch("/api/funcionarios/");
     return await res.json();
   } catch (error) {
     console.error(error);
@@ -10,9 +10,9 @@ export const getAreas = async () => {
   }
 };
 
-export const deleteArea = async (id) => {
+export const deleteFuncionario = async (id) => {
   try {
-    await authFetch(`/api/areas/${id}/`, {
+    await authFetch(`/api/funcionarios/${id}/`, {
       method: "DELETE"
     });
     return true;
@@ -22,21 +22,30 @@ export const deleteArea = async (id) => {
   }
 };
 // Crear
-export const createArea = async ({ nombre, descripcion }) => {
-  const res = await authFetch("/api/areas/", {
+export const createFuncionario = async ({
+  nombre,
+  apellido,
+  cargo,
+  area,
+}) => {
+  const res = await authFetch("/api/funcionarios/", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ nombre, descripcion }),
+    body: JSON.stringify({
+      nombre,
+      apellido,
+      cargo,
+      area, // 🔥 ID del área
+    }),
   });
 
-  return await res.json(); // opcional
+  return await res.json();
 };
-
 // Actualizar
-export const updateArea = async (id, data) => {
-  const res = await authFetch(`/api/areas/${id}/`, {
+export const updateFuncionario = async (id, data) => {
+  const res = await authFetch(`/api/funcionarios/${id}/`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",

@@ -53,3 +53,15 @@ export const descargarReporteValorPDF = async (params = {}) => {
   a.click();
   a.remove();
 };
+
+export const getProductosAsignados = async (params = {}) => {
+  const query = new URLSearchParams(params).toString();
+
+  const res = await authFetch(
+    `/api/reportes/productos-asignados/?${query}`
+  );
+
+  if (!res.ok) throw new Error("Error cargando productos asignados");
+
+  return await res.json();
+};

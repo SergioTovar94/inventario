@@ -5,4 +5,5 @@ from .models import ProductoAsignacion
 class ProductoAsignacionAdmin(admin.ModelAdmin):
     list_display = ('id', 'producto', 'funcionario', 'fecha_asignacion')
     list_filter = ('fecha_asignacion',)
-    search_fields = ('producto__tipo_producto__tipo_producto', 'funcionario__nombre')
+    search_fields = ('producto__tipo__nombre', 'funcionario__nombre')
+
